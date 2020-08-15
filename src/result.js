@@ -13,6 +13,12 @@ function Result({ task, arre, dat }) {
   useEffect(() => {
     SetCont(task);
   }, [task]);
+  useEffect(()=>{
+    let src = "/messenger_seri.mp3";
+let audio = new Audio(src);
+audio.play();
+console.log(2)
+  },[dat])
 
   return (
     <>
@@ -36,7 +42,11 @@ function Result({ task, arre, dat }) {
               >
                 {index !== disp && (
                   <>
-                    <div>{cont[index] || e}</div>
+                    <div style={{
+                      overflowWrap:"anywhere"
+                    }}>
+                      {  String(cont[index]) || e}</div>
+                    
                     <button
                       title="Edit task"
                       className="btn2"
@@ -49,6 +59,7 @@ function Result({ task, arre, dat }) {
                         setVal(task[index]);
                         setClasdiv(index);
                         arre(0);
+                        task[index].length % 78 === 0 ? setRows(rows + 1) : setRows(Math.round(1 + task[index].length / 78));
                       }}
                     >
                       <i className="fas fa-marker"></i>
